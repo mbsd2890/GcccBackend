@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/cars")
 public class CarController {
 
     @Resource
@@ -19,7 +19,7 @@ public class CarController {
 
     public CarController(ICarService service) {this.carService =  service; }
 
-    @GetMapping("/cars")
+    @GetMapping("/")
     public ResponseEntity<List<CarDTO>> getAllCars(){
         List<CarDTO> carDTOS = carService.findAll();
         if (carDTOS != null) {
@@ -28,13 +28,13 @@ public class CarController {
         else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PostMapping("/car")
+    @PostMapping("/")
     public ResponseEntity<Void> addCar(@RequestBody CarDTO carDTO){
         this.carService.save(carDTO);
         return null;
     }
 
-    @GetMapping("/car/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<CarDTO> getCarById(@PathVariable Long id){
         CarDTO carDTO = carService.getCarById(id);
         if (carDTO == null) {
@@ -43,7 +43,7 @@ public class CarController {
         return ResponseEntity.ok(carDTO);
     }
 
-    @PutMapping("/car/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<CarDTO> updateCar(@PathVariable Long id, @RequestBody CarDTO car){
         CarDTO existingCarDTO = carService.getCarById(id);
         if (existingCarDTO == null) {
@@ -56,7 +56,7 @@ public class CarController {
         return ResponseEntity.ok(updatedCar);
     }
 
-    @DeleteMapping("/car/{id}")
+    @DeleteMapping("//{id}")
     public ResponseEntity<?> deleteCar(@PathVariable Long id){
         CarDTO existingCar = carService.getCarById(id);
         if (existingCar == null) {
