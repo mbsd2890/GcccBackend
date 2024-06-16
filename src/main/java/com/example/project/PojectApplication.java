@@ -12,7 +12,6 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "com.example.project.repository")
 @EntityScan(basePackages = "com.example.project.domain.model")
-@RestController
 @EnableWebMvc
 public class PojectApplication {
 

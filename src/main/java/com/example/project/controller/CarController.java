@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {
-        "https://wonderful-bay-04b3f7303.5.azurestaticapps.net",
-        "http://localhost:4200"
-})
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/cars")
 public class CarController {
