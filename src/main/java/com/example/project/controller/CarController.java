@@ -9,7 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = {
+        "https://wonderful-bay-04b3f7303.5.azurestaticapps.net",
+        "http://localhost:4200"
+})
 @RestController
 @RequestMapping("/cars")
 public class CarController {
@@ -56,7 +59,7 @@ public class CarController {
         return ResponseEntity.ok(updatedCar);
     }
 
-    @DeleteMapping("//{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteCar(@PathVariable Long id){
         CarDTO existingCar = carService.getCarById(id);
         if (existingCar == null) {
